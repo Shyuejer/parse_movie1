@@ -6,15 +6,16 @@ import json
 
 app = Flask(__name__, template_folder='.')
 
+url = ('https://newsapi.org/v2/everything?'
+       'q=Apple&'
+       'from=2019-05-12&'
+       'sortBy=popularity&'
+       'apiKey=afb72b362d91446999442c04aa5424d6')
+
 @app.route('/')
 def homepage():
-  params = {
-    'api_key': 't0WeJBCWeinv',
-  }
-  r = requests.get(
-      'https://www.parsehub.com/api/v2/projects/tDJk5gTsxvNT/last_ready_run/data',
-      params=params)
-  return render_template('movies.html', movies=json.loads(r.text)['movies'])
+  r = requests.get(url)
+  return render_template('home.html', articles = json.loads(r.text)['articles'])
 
 if __name__ == '__main__':
   app.run(port=8080,debug=True)

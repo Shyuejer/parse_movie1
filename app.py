@@ -4,7 +4,7 @@ from flask import Flask, render_template
 import requests
 import json
 
-app = Flask(__name__, template_folder='.')
+app = Flask(__name__)
 
 url = ('https://newsapi.org/v2/everything?'
        'q=Apple&'
